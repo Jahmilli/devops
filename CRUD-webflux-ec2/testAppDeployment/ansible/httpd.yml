@@ -1,0 +1,35 @@
+---
+- name: limit example play
+  hosts: app
+  gather_facts: false
+  tasks:
+    - name: tell us which host we are on
+      become_user: root
+      become: true
+      debug:
+        var: inventory_hostname
+
+- name: upgrade all packages
+  hosts: app
+  become: true
+  tasks:
+    - name: Installing packages
+      yum:
+        name: '*'
+        state: latest
+    - name: Install pip
+      yum:
+        name: python-pip
+        state: installed
+    - name: Download additional packages
+      pip:
+        name: 
+        - boto
+        - boto3
+        - botocore    
+    - name: Install java if not installed
+      yum:
+        name: java-1.8.0
+
+- import_playbook: setup_app.yml
+- import_playbook: base_httpd/tasks/main.yml

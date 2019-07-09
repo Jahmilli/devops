@@ -1,0 +1,18 @@
+language: generic
+
+env:
+  - TERRAFORM_RUN=plan ENVIRONMENT=test # Determines whether terraform should plan or apply and in what workspace
+script:
+  - echo "DOWNLOADING TERRAFORM"
+  - export TERRAFORM_RUN ENVIRONMENT; # Export variables allowing bash script to access them
+    # Pull latest version of terraform 
+  - curl -fSL "https://releases.hashicorp.com/terraform/0.12.3/terraform_0.12.3_linux_amd64.zip" -o terraform.zip
+  - sudo unzip terraform.zip -d /opt/terraform
+  - sudo ln -s /opt/terraform/terraform /usr/bin/terraform
+  - rm -f terraform.zip
+  - ./scripts/build.bash
+
+  # branches:
+#   only:
+#     - master
+#     - /^task.*/

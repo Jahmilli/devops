@@ -1,0 +1,21 @@
+language: java
+jdk:
+- openjdk8 # Need to determine what jdk to use
+
+script:
+  - ./gradlew clean build # Build the project using the gradle wrapper
+
+# Uploads the JAR file into S3 
+deploy:
+  provider: s3
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_ACCESS_KEY"
+  bucket: "sebs-travis-builds"
+  skip_cleanup: true
+  region: ap-southeast-2
+  local_dir: build/libs/
+  upload-dir: testApp
+#  TODO: Look at adding conditions to which the build should deploy
+#  on:
+#    branch: release
+#    condition: $MY_ENV = super_awesome

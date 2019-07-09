@@ -1,0 +1,24 @@
+# tasks file for base_httpd
+- name: This sets up an httpd webserver
+  hosts: app
+  become: true
+  tasks:
+  - name: Install apache packages 
+    yum:
+      name: httpd
+      state: present
+  - name: ensure httpd is running
+    service:
+      name: httpd 
+      state: started
+  - name: Copy index.html to /var/www/html
+    copy:
+      src: ../files/index.html
+      dest: /var/www/html
+      owner: root
+      group: root
+      mode: '777'
+
+# Instlal nginx yum install nginx -y for ec2 sudo amazon-linux-extras install nginx1.12
+# cd /etc/nginx/sites-available/
+# less default

@@ -1,0 +1,3 @@
+---
+# tasks file for base_httpd
+- import_playbook: httpd.yml

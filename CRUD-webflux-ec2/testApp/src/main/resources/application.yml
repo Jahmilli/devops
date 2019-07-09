@@ -1,0 +1,15 @@
+
+spring:
+  data:
+    mongodb:
+      # Username and password SHOULD be stored somewhere else, but for testing with a free database this is fine...not really though
+      uri: "mongodb://admin:password1@ds341837.mlab.com:41837/mytestdatabase"
+
+#  {endpoints.userdetails.base_url}
+endpoints:
+  userdetails:
+    base_url: "http://localhost:8000"
+    port: 8000
+
+logging:
+  path: /tmp/
