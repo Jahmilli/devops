@@ -18,3 +18,5 @@ Additional improvements to this that could be done are:
 in the AWS_ACCESS_KEY and AWS_SECRET_ACCESS_KEY in as environment variables. It would be good to figure
 out how to get Travis to assume a predefined role containing all the necessary policies for provisioning and 
 deployment.
+- Setting up a hostname __OR__ elastic IP for the instance provisioned which would then be used in the inventory
+for Ansible.
